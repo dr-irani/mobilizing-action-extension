@@ -12,9 +12,13 @@ class App extends React.Component {
 
   render () {
     return (
-      <div className="title">
-        <Option />
+      <div id="app-root">
+        <h1>
+          HELLO TEST
+        </h1>
       </div>
     );
   }
 }
+
+export default App;
