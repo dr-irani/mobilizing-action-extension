@@ -1,0 +1,1 @@
+KEYWORDS = ['homeless', 'education', 'food']
