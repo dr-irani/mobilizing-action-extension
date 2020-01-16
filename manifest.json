@@ -1,37 +1,25 @@
 {
-  "author": "Darius Irani, Yong (Emily) Dich, Lance Tan",
-  "browser_action": {
-    "default_icon": "img/default_icon.png",
-    "default_popup": "popup.html"
-  },
-
-  "background": {
-    "scripts": ["js/background.js"],
-    "persistent": false
-  },
-
+  "manifest_version": 2,
+  "name": "Actionable Reading",
+  "version": "0.1",
   "content_scripts": [
     {
-      "js": [
-        "js/jquery-3.4.1.min.js",
-        "js/popup.js",
-        "js/material.min.js",
-        "js/content.js"
-      ],
-      "css": ["css/style.css", "css/material.min.css"],
-      "matches": ["http://*/*"]
+      "matches": ["<all_urls>"],
+      "js": ["js/jquery-3.4.1.min.js", "js/content.js"],
+      "css": ["css/style.css", "css/material.min.css"]
     }
   ],
+  "browser_action": {
+    "default_icon": "img/default_icon.png"
+  },
+  "background": {
+    "scripts": ["js/background.js"]
+  },
 
   "description": "Chrome extension that connects readers and suggests ways take action",
   "icons": {
     "128": "img/iconStore.png",
     "16": "img/icon.png",
     "48": "img/iconLauncher.png"
-  },
-
-  "manifest_version": 2,
-  "name": "Actionable Reading",
-  "permissions": ["activeTab"],
-  "version": "1.0"
+  }
 }
