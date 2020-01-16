@@ -1,14 +1,49 @@
 
 #app-root {
-    width: 400px;
-    height: 100px;
+
+    width: 300px;
+    height: 400px;
     padding: 2px;
+    
+    color: #000000;
 
     h1 {
+        /* EMPACT */
+        position: absolute;
+        width: 282px;
+        height: 63px;
+        left: 73px;
+        top: 29px;
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 48px;
+        line-height: 77px;
+        display: flex;
+        align-items: center;
         text-align: center;
-        color: darkblue;
-        font-weight: bold;
-        font-family: Helvetica;
-        text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+
+        color: #000000;
+
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    }
+    form {
+        width:375px; 
+        height:70px; 
+        left:27px; 
+        top:138px; 
+
+        background-color:#7B1E1E; 
     }
 }
+
+// #learn {
+//     width:375px; 
+//     height:70px; 
+//     left:27px; 
+//     top:138px; 
+
+//     background-color:#7B1E1E; 
+// }
