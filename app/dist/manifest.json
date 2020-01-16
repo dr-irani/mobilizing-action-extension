@@ -5,7 +5,8 @@
   "version": "0.0.0.1",
   "browser_action": {
     "default_title": "My Chrome Extension",
-    "default_popup": "popup.html"
+    "default_popup": "content.html"
   },
-  "manifest_version": 2
+  "manifest_version": 2, 
+  "permissions": ["tabs"]
 }
