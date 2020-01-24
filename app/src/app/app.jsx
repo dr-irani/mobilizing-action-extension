@@ -5,11 +5,13 @@ chrome.tabs.query({active:true}, function(tab){
     console.log("here"); 
     console.log(tab[0].url); 
 })
+
+var 
 class App extends Component {
     render() {
         return <div id="app-root"><h1>EMPACT</h1>
             <form> 
-                <input type="text" />
+                <input ty pe="text" />
                 <button id="learn" type="submit">Learn More</button>
                 <button type="submit">Donate</button>
                 <button type="submit">Volunteer</button>
