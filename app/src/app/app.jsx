@@ -2,10 +2,21 @@ import { h, Component } from 'preact';
 import './app.scss'; 
 import axios from 'axios'; 
 
-chrome.tabs.query({active:true}, function(tab){
-    console.log("here"); 
-    console.log(tab[0].url); 
-})
+var url = "hello"
+function init(){
+    chrome.tabs.query({active:true}, function(tab){
+        console.log("here"); 
+        console.log(tab[0].url); 
+        url = tab[0].url;
+        processTab();  
+    })
+}
+
+function processTab(){
+    console.log("Processing url tab")
+    console.log(url); 
+}
+
 class App extends Component {
     state = {
         error: null, 
@@ -21,6 +32,7 @@ class App extends Component {
     or setInterval. We are using it to update the state so we can trigger 
     the other lifecycle methods. */
     componentDidMount(){
+    init(); 
     // axios.get("https://jsonplaceholder.typicode.com/users").then(
     axios.get("http://localhost:8000/app").then(
       result => {
@@ -40,6 +52,14 @@ class App extends Component {
         });
       }
       );
+    axios.post("http://localhost:8000/update",
+            // chrome.tabs.query({active:true}, function(tab){
+            //     console.log("testing post")
+            //     console.log(tab[0].url); 
+            //     tab[0].url; 
+            // })
+            url
+            , null)
     }
     render() {
         const {error, isLoaded, items} = this.state; 
