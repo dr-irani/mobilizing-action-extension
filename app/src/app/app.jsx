@@ -21,12 +21,14 @@ class App extends Component {
     or setInterval. We are using it to update the state so we can trigger 
     the other lifecycle methods. */
     componentDidMount(){
-    axios.get("https://jsonplaceholder.typicode.com/users").then(
+    // axios.get("https://jsonplaceholder.typicode.com/users").then(
+    axios.get("http://localhost:8000/app").then(
       result => {
         this.setState({
           isLoaded: true,
           items: result.data
         });
+        // console.log(result.data); 
       },
       // Note: it's important to handle errors here
       // instead of a catch() block so that we don't swallow
@@ -55,11 +57,7 @@ class App extends Component {
                     <button type="submit">Volunteer</button>
                 </form>
                 <ul>
-                    {items.map(item => (
-                        <li key={item.username}>
-                            {item.username}: {item.name}
-                        </li>
-                    ))}
+                    {items}
                 </ul>
                 </div>
             ); 
