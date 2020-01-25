@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'production',
   entry: {
-    popup: './src/content.jsx',
+    content: './src/content.jsx',
   },
   output: {
     filename: '[name].js',
