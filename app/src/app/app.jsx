@@ -2,19 +2,14 @@ import { h, Component } from 'preact';
 import './app.scss'; 
 import axios from 'axios'; 
 
-var url = "hello"
-function init(){
-    chrome.tabs.query({active:true}, function(tab){
-        console.log("here"); 
-        console.log(tab[0].url); 
-        url = tab[0].url;
-        processTab();  
+let init = () => {
+    return new Promise(function(resolve, reject){
+        chrome.tabs.query({active:true, currentWindow: true}, function(tab) {
+            let { lastError } = chrome.runtime; 
+            if(typeof lastError !== 'undefined') reject(lastError); 
+            else resolve(tab[0].url)
+        })
     })
-}
-
-function processTab(){
-    console.log("Processing url tab")
-    console.log(url); 
 }
 
 class App extends Component {
@@ -32,35 +27,36 @@ class App extends Component {
     or setInterval. We are using it to update the state so we can trigger 
     the other lifecycle methods. */
     componentDidMount(){
-    init(); 
-    // axios.get("https://jsonplaceholder.typicode.com/users").then(
-    axios.get("http://localhost:8000/app").then(
-      result => {
-        this.setState({
-          isLoaded: true,
-          items: result.data
-        });
-        // console.log(result.data); 
-      },
-      // Note: it's important to handle errors here
-      // instead of a catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      error => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      }
-      );
-    axios.post("http://localhost:8000/update",
-            // chrome.tabs.query({active:true}, function(tab){
-            //     console.log("testing post")
-            //     console.log(tab[0].url); 
-            //     tab[0].url; 
-            // })
-            url
-            , null)
+    init().then( function (val) {
+        axios.post("http://localhost:8000/update",
+        {"url": val}, null).then(function (response){
+            console.log("Successful response: " + response)
+        }).catch(function(error){
+            console.log(error)
+        })
     }
+        )
+    }
+    // axios.get("https://jsonplaceholder.typicode.com/users").then(
+    // axios.get("http://localhost:8000/app").then(
+    //   result => {
+    //     this.setState({
+    //       isLoaded: true,
+    //       items: result.data
+    //     });
+    //     // console.log(result.data); 
+    //   },
+    //   // Note: it's important to handle errors here
+    //   // instead of a catch() block so that we don't swallow
+    //   // exceptions from actual bugs in components.
+    //   error => {
+    //     this.setState({
+    //       isLoaded: true,
+    //       error
+    //     });
+    //   }
+    //   );
+    
     render() {
         const {error, isLoaded, items} = this.state; 
         if (error) {
@@ -88,4 +84,3 @@ class App extends Component {
 
 export default App;
 
-// getting the link / url and console log 
